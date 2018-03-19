@@ -61,8 +61,8 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="8" language="java" name="nodo.NodoDoble" project="SpaceInvaders" 
-    file="/SpaceInvaders/src/nodo/NodoDoble.java" binary="false" corner="BOTTOM_RIGHT">    
+  <class id="8" language="java" name="nodos.NodoDoble" project="SpaceInvaders" 
+    file="/SpaceInvaders/src/nodos/NodoDoble.java" binary="false" corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="197" y="417"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="true" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
@@ -70,8 +70,8 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="9" language="java" name="nodo.NodoSimple" project="SpaceInvaders" 
-    file="/SpaceInvaders/src/nodo/NodoSimple.java" binary="false" corner="BOTTOM_RIGHT">    
+  <class id="9" language="java" name="nodos.NodoSimple" project="SpaceInvaders" 
+    file="/SpaceInvaders/src/nodos/NodoSimple.java" binary="false" corner="BOTTOM_RIGHT">    
     <position height="83" width="106" x="37" y="366"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="true" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
@@ -129,6 +129,14 @@
     <position height="52" width="114" x="349" y="117"/>    
     <display autosize="true" stereotype="true" sort-features="false" accessors="true"/>  
   </package>  
+  <association id="16">    
+    <end type="SOURCE" refId="2" navigable="false">      
+      <attribute id="17" name="inicio"/>      
+      <multiplicity id="18" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="9" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
   <classifier-display autosize="true" stereotype="true" package="true" initial-value="true" signature="true" 
     sort-features="false" accessors="true" visibility="true">    
     <attributes public="true" package="true" protected="true" private="true" static="true"/>    

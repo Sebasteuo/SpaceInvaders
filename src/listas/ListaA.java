@@ -1,5 +1,5 @@
 package listas;
-import nodo.*;
+import nodos.*;
 public class ListaA {
 	private NodoSimple inicio;
 	private int tamanio;
