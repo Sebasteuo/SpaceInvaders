@@ -7,7 +7,7 @@ package ventana;
 
 /**
  *
- * @author Ivan
+ * @author sebastianalba
  */
 public class Ventana extends javax.swing.JFrame {
 
