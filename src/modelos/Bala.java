@@ -1,46 +1,27 @@
- 
 package modelos;
  
 import java.awt.Color;
 import java.awt.Graphics;
- import javax.swing.JLabel;
-import javax.swing.JOptionPane;
  
-public class Bala extends JLabel implements Runnable{
+ 
+public class Bala extends Coordenada implements  Dibujable{
 	
-    public int getReset(){ t=null;return 0;}
+    private float radio;
+    private Color color;
     
-   public void setX(int x){this.x=x;}
- 
-  public void setY(int y){this.y=y;}
+    public Bala(Coordenada cor,float r,Color c){super(cor.getX(),cor.getY());radio=r;color=c;}
+   
 
         @Override
-	public void paint(Graphics g){    
-	g.setColor(Color.red);
-    g.fillOval(x,y,25,25);}
+	public void dibujar(Graphics g){    
+	g.setColor(color);
+    g.fillOval((int)(this.getX()-radio),(int)(this.getY()-radio),(int)radio*2,(int)radio*2);}
+        
+        
+        public void ciclo(){
+        float x=this.getY();
+        this.setY(x+=20);
+        }
  
-    
-        @Override
-	public void run(){
-		try{ while(y!=1){
-         
-				y--;	
-				repaint();
-				t.sleep(10);
-                }  t=null; 
-		}catch(InterruptedException e){
-			running = false;}}
-	
-	public void start(){
-		if (t == null){  
-			running = true;
-			t = new Thread(this);
-			t.start(); } }
- 
-  	private int x;
-	private int y;
-        int cont;
-        private int reset;
- 	private Thread t;
-	private boolean running;
+      
 }
