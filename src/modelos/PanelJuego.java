@@ -1,46 +1,81 @@
- 
 package modelos;
-
-import listas.ListaA;
-import listas.ListaB;
-import listas.ListaBasic;
-import listas.ListaC;
-import listas.ListaD;
-import listas.ListaE;
-import listas.ListaPadre;
+import personaje.*;
+import listas.*;
 import nodo.Nodo;
-import java.awt.Color;
-import java.awt.Dimension;
-import java.awt.Graphics;
-import java.awt.Image;
-import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
-import java.util.ArrayList;
-import static javax.swing.JFrame.EXIT_ON_CLOSE;
-import javax.swing.JLabel;
-import javax.swing.JOptionPane;
-import javax.swing.JPanel;
+import java.awt.*;
+import java.awt.event.*;
+import java.util.*;
+import javax.swing.*;
  
 public class PanelJuego extends JPanel implements KeyListener{
-    ArrayList elementos;
-    private Nave nave;
-    public Bala balasInv[] ;
-         private Coordenada movIzq=new Coordenada(-25,0);
-      private Coordenada movDer=new Coordenada(25,0);
-       private Coordenada movCentro=new Coordenada(0,0);
-     
-     private Bala bala;
-     private ListaPadre invasores;
-    public PanelJuego(ArrayList v){elementos=v;
-    balasInv=new Bala[5];
+     ArrayList elementos;//ArrayList de elementos del Panel (Invasores, nave, balas......)
+     private Nave nave;
+     private final Coordenada movIzq=new Coordenada(-25,0);
+     private final Coordenada movDer=new Coordenada(25,0);
+     private ListaPadre invasores;//Hilera de invasores
+     private ArrayList <NombreHilera>nombreHileras=new ArrayList<NombreHilera>();
+    private int cont=0,contk2=0,tam=5;
+    private String nombreJug="Sebastián",lista  ,hile[]={"A","B","D","E","C","Basic"},list="";
+    private NombreHilera nh,next,nombre,puntaje,nivel;
+    public PanelJuego(){ 
     this.addKeyListener(this);
     this.setFocusable(true);
+    this.crearComponentes();}                                              
+     
+    public void crearComponentes(){
+    elementos=new ArrayList();
+      lista=hile[(int)(Math.random()*(tam-1) + 0 )];
+    this.crearNuevaHilera(); }
     
-    }
+    public void crearNuevaHilera() {cont++;
+       Coordenada c= new Coordenada(525,400);
+ Coordenada c1= new Coordenada(475,450);
+  Coordenada c2= new Coordenada(575,450);
+   Nave n=new Nave(c,c1,c2,Color.red);
+  elementos.add(n);
+nave=n;
+  nh=new NombreHilera(0,15,40,"Hilera: "+lista,Color.RED);
+ elementos.add(nh);  
+          list=lista;
+
+      ////////////////////////////////////////////CREA LISTA
+               lista=hile[(int)(Math.random()*(tam-1) + 0 )];
+                      ListaPadre invasores=null;
+             if(lista.equals("Basic")){invasores =new ListaBasic(); ;}
+             if(lista.equals("A")){invasores =new ListaA(); }
+             if(lista.equals("B")){invasores =new ListaB(); }
+             if(lista.equals("C")){invasores =new ListaC(); }
+             if(lista.equals("D")){invasores =new ListaD(); }
+             if(lista.equals("E")){invasores =new ListaD(); }
+             
+              char jefe[]={'j','i'};int d=0;
+              
+            for(int i=0;i<tam;i++){
+                String j=i+"x";
+                char jef=  jefe[(int)(Math.random()*(2) + 0 )];
+ if(jef=='j'&&d==0&&!lista.equals("Basic")){d=1;j=i+"j"+""; }
+ else{    
+ if(((jef=='i' )||(jef=='j'&&d==1))&&(!lista.equals("Basic"))){
+     j=i+"i"+""; } }
     
+                  Invasor inv=new Invasor(new Coordenada((i+1)*100,0),40,Color.BLUE,j);
+             invasores.insertar(inv);
+             elementos.add(inv);
+                    invasores.crearListaCircular();
+            } invasores.imprimir();
+             
+  /////////////////////////////////////////////////////CREA NOMBRE DE HILERA         
+   next=new NombreHilera(0,45,40,"ProxHile: "+lista,Color.RED);
+ elementos.add(next);
+   nivel=new NombreHilera(0,75,40,"Nivel: "+cont,Color.RED);
+ elementos.add(nivel);
+     nombre=new NombreHilera(0,105,40,"Nombre: "+nombreJug,Color.RED);
+ elementos.add(nombre); 
+    puntaje=new NombreHilera(500,15,40,"Puntaje: ",Color.RED);
+ elementos.add(puntaje); this.invasores=invasores;}
     
     @Override
-    public void paint(Graphics g){
+    public void paint(Graphics g){//Dibuja cada elemento del Panel 
         Dimension d=getSize();
         Image im=createImage(d.width,d.height);
         Graphics buff=im.getGraphics();
@@ -57,78 +92,114 @@ public class PanelJuego extends JPanel implements KeyListener{
    
     
     @Override
-    public void keyTyped(KeyEvent e) {
-    }
+    public void keyTyped(KeyEvent e) {}
 
     @Override
     public void keyPressed(KeyEvent e) {
-int tecla=e.getKeyCode();
+     int tecla=e.getKeyCode();
 
      if(tecla==KeyEvent.VK_LEFT){
      this.nave.mover(movIzq); }
      
-     
     if(tecla==KeyEvent.VK_RIGHT){        
      this.nave.mover(movDer); }  
      
-        if(tecla==KeyEvent.VK_SPACE){   
+     if(tecla==KeyEvent.VK_SPACE){   
             Bala bal= this.nave.crearBala();
-nave.balas.add(bal);
+        nave.balas.add(bal);
        elementos.add(bal); } }
 
     @Override
     public void keyReleased(KeyEvent e) {int tecla=e.getKeyCode();
-
      if(tecla==KeyEvent.VK_LEFT){
      this.nave.mover(movIzq);}
-     
      
     if(tecla==KeyEvent.VK_RIGHT){        
      this.nave.mover(movDer); } 
     
        if(tecla==KeyEvent.VK_6){        
-Bala bal= this.nave.crearBala();
-nave.balas.add(bal);
-       elementos.add(bal); }
-    }
+       Bala bal= this.nave.crearBala();
+       nave.balas.add(bal);
+       elementos.add(bal); }}
     
-    public void Crearnave(Nave na){nave= na;}
-
-    public void iniciar(){
+    public void iniciar(){ 
     while(true){
         try{
             if(!nave.balas.isEmpty()){nave.ciclo();}
-             {   for(int i=0;i<balasInv.length;i++){
-               balasInv[i].ciclo();}
-             for(int i=0;i<balasInv.length;i++){
-             if(balasInv[i].getY()==600){balasInv[i].setY(0);}}}
-             colision();esAtacado();
-        Thread.sleep(60);
-        }
+            Nodo actual=invasores.raiz;
+              while(actual!=null){
+                  actual.info.ciclo();
+               if(actual.info.getY()==600){actual.info.setY(0);
+                   //JOptionPane.showMessageDialog(this, "Fin del juego");System.exit(0); }
+               }    actual=actual.sig;  }
+              seDisparaAInvasor();
+               if(invasores.cantidad==0){ //this.removeAll();this.repaint();
+                   nave.setY(900);  nave.setX(900);  
+                   for(int i=0;i<nave.balas.size();i++){
+                   nave.balas.get(i).setX(900);
+                   nave.balas.get(i).setY(900);}
+                    nh.setX(900); nh.setY(900);
+                     next.setX(900); next.setY(900);
+                        nivel.setX(900); nivel.setY(900);
+                   this.crearNuevaHilera();  }
+         Thread.sleep(60);  }
         catch(InterruptedException e){System.out.println(e);}
-        
-    repaint();}
-    }
-
-public void crearBalasInvasor(Bala []v){
-    for(int i=0;i<balasInv.length;i++){
-        balasInv[i]=v[i];}}
-
-    public void colision() {
- for(int i=0;i<nave.balas.size();i++){
-Bala b=  (Bala)nave.balas.get(i);
-  
-     for(int j=0;j<5;j++){
-            if(b.getX()==((j+1)*100)&&b.getY()==55){
-                JOptionPane.showMessageDialog(this, "Le disparastes a un invasor!!");}}
-    }}
-
+    repaint();} }
     
-    public void esAtacado() {
- for(int i=0;i<this.balasInv.length;i++){
-Bala b=  (Bala)this.balasInv[i];
-   {
-            if(b.getX()==nave.getX()&&b.getY()==nave.getY()){
-                JOptionPane.showMessageDialog(this, "Te han disparado!!!! perdistes");System.exit(0);}}
-    }}
+ 
+     public void seDisparaAInvasor(){ 
+      Nodo actual=invasores.raiz;
+      while(actual!=null){
+          for (int i=0;i<nave.balas.size();i++) {
+          if(actual.info.getX()==nave.balas.get(i).getX()){ 
+        
+             if( actual.info.getId().charAt(1)=='j'&&list.equals("A")){
+                 JOptionPane.showMessageDialog(this, "holap");
+                Nodo aux=invasores.raiz;
+               while(aux!=null){ 
+                   invasores.vaciarLista();
+                   aux.info.setX(900);
+                   aux.info.setY(900);
+                   aux=aux.sig;}}
+            
+             if( actual.info.getId().charAt(1)=='j'&&list.equals("B")){
+                 int a=  (int)(Math.random()*(tam) + 1),cont=1;
+                 Nodo aux=invasores.raiz;
+                 while(aux!=null ){
+                     if(a==cont){
+ JOptionPane.showMessageDialog(this, aux.info.getId()+aux.info.getX()+"ss"+aux.info.getY());
+                actual.info.setX(aux.info.getX());
+                 actual.info.setY(aux.info.getY());break;}
+                     cont++;
+                 aux=aux.sig;  }
+                                  
+ 
+                  
+                 //invasores.borrarNodo((float)aux.info.getX(),(float)aux.info.getY());   }
+             }
+             
+           if( actual.info.getId().charAt(1)=='j'&&list.equals("C")){ 
+               invasores.borrarNodo((float)actual.info.getX(),(float)actual.info.getY()); 
+                actual.info.setX(900);
+           actual.info.setY(900);}
+            if( actual.info.getId().charAt(1)=='j'&&list.equals("D")){
+                invasores.borrarNodo((float)actual.info.getX(),(float)actual.info.getY()); 
+                actual.info.setX(900);
+           actual.info.setY(900);} 
+             if( actual.info.getId().charAt(1)=='j'&&list.equals("E")){
+              invasores.borrarNodo((float)actual.info.getX(),(float)actual.info.getY()); 
+                actual.info.setX(900);
+           actual.info.setY(900);}
+          
+              if( actual.info.getId().charAt(1)!='j'){
+                    invasores.borrarNodo((float)actual.info.getX(),(float)actual.info.getY()); 
+                actual.info.setX(900);
+           actual.info.setY(900);  }}
+          } actual=actual.sig;  } }
+    
+     
+  
+    
+    
+     
 }

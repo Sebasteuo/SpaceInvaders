@@ -1,3 +1,4 @@
+ 
 package modelos;
  
 import java.awt.Color;
@@ -13,7 +14,7 @@ public class Nave extends Coordenada implements Dibujable{
     
   public  Coordenada c1,c2;
     public Color color;
-     public ArrayList balas=new ArrayList();
+     public ArrayList <Bala>balas=new ArrayList<Bala>();
 public Nave(Coordenada a, Coordenada b,Coordenada c ,Color colo){    
 super(a.getX(),a.getY());
   c1=new Coordenada(b.getX(),b.getY());color=Color.black;
@@ -54,7 +55,7 @@ g.drawImage(Img.getImage(), (int)this.getX()-35, (int)this.getY(), 70, 70, null)
 g.drawImage(Img.getImage(), (int)this.getX()-35, (int)this.getY(), 70, 70, null);}
     
     
-    void mover(Coordenada c) {
+   public void mover(Coordenada c) {
      this.setVertice(this.suma(c), 1);
       this.setVertice(c1.suma(c), 2);
    this.setVertice(c2.suma(c), 3);}

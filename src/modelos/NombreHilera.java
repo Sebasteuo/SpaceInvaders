@@ -1,3 +1,4 @@
+
 package modelos;
 
 import java.awt.Color;
@@ -8,12 +9,11 @@ import javax.swing.JLabel;
 public class NombreHilera extends Coordenada  implements Dibujable{
 
      String hilera;
-int radio;
-    public NombreHilera(float x, float y,int r,String lista) {
+     Color color;
+    public NombreHilera(float x, float y,int r,String lista,Color col) {
         super(x,y);
-radio=r;
-      hilera=lista;
-    }
+  color=col;
+  hilera=lista; }
   
  
     @Override
@@ -21,9 +21,8 @@ radio=r;
  
            
        int fontSize = 20;
-    g.setFont(new Font("Arial", Font.PLAIN, fontSize));
-    g.setColor(Color.WHITE);
-    g.drawString(hilera,(int) this.getX(), (int)this.getY());
-     } 
+    g.setFont(new Font("Chalkduster", Font.PLAIN, fontSize));
+    g.setColor(color);
+    g.drawString(hilera,(int) this.getX(), (int)this.getY());  } 
     
 }

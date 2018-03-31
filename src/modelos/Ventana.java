@@ -17,12 +17,14 @@ public class Ventana extends javax.swing.JFrame implements WindowListener   {
 
     public Ventana(String titulo) {
        		 super(titulo);	
-     
-             
-                /*      nave=new Nave();add(nave);
-                   bala=new Bala();
-                   add(bala);*/ 
-                 this.addWindowListener(this);}   
+                this.addWindowListener(this);
+   PanelJuego panel =new PanelJuego();
+  //////////////////////////////////////SE AGREGA PANEL A LA VENTANA
+   add(panel);
+ setSize(700, 500);
+ setVisible(true);
+ setBackground(Color.BLACK);
+ panel.iniciar();}   
 
     @Override
     public void windowOpened(WindowEvent e) {
