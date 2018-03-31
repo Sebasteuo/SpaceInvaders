@@ -1,18 +1,33 @@
  
 package listas;
  
-import modelos.Invasor;
 import nodo.Nodo;
+import javax.swing.JOptionPane;
+
+import modelos.Invasor;
 
 public class ListaD extends ListaPadre {
    
     
      @Override
-     public void insertar ( Invasor x)//INSERTA DE FORMA CIRCULAR 
-    {
-         
-        
+     public Nodo insertar ( Invasor x)//INSERTA DE FORMA CIRCULAR 
+    {            if(vacia()){raiz=new Nodo(x);}
+       
+       else{  
+       Nodo actual=raiz;
+       while(actual.sig!=null){
+      actual=actual.sig; }
+       Nodo s=new Nodo(x);
+       actual.sig=s;
+       s.ant=actual;cantidad++;
+       return actual;  } 
+    cantidad++;return raiz;
     }
     
+     @Override
+          public void crearListaCircular(){
+     Nodo ultimo=this.ultimoNodo();
+     ultimo.sig=raiz.ant; }
+     
     public void ordenarListaPorResistencias(){}
 }
