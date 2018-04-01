@@ -1,11 +1,11 @@
+ 
 package personaje;
  
+import modelos.Coordenada;
+import modelos.Dibujable;
 import java.awt.Color;
 import java.awt.Graphics;
 import javax.swing.JOptionPane;
-
-import modelos.Coordenada;
-import modelos.Dibujable;
 
 public class Asteroide extends Coordenada implements Dibujable{
 
