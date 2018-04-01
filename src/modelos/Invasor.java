@@ -8,6 +8,7 @@ import java.awt.Graphics;
 import java.net.URL;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 
  
 public class Invasor  extends Coordenada implements Dibujable{
@@ -15,6 +16,7 @@ public class Invasor  extends Coordenada implements Dibujable{
    private float radio;
     public Color color;
     private String id;
+    private int cont=0,dir=0,j=0;
     public Invasor(Coordenada cor,float r,Color c,String i){super(cor.getX(),cor.getY());radio=r;color=c;id=i;}
    
  
@@ -36,9 +38,23 @@ g.drawImage(Img.getImage(), (int)this.getX(), (int)this.getY(), 70, 70, null);}
       }
 
   public void ciclo(){
+      if(j%2==0){dir=0;}
+      
+      else{dir=1;}
+      
+      
+     if(cont!=200){ 
+         float y=this.getX(); 
+         if( dir==0){ 
+        this.setX(y-=5); }
+          if( dir==1){   this.setX(y+=5);}
+     cont+=5;}
+     
+     else{ 
          float x=this.getY();
-        this.setY(x+=20);   
+         this.setY(x+=5); cont=0;j++;}
+     
         }
-
+    
 
 }

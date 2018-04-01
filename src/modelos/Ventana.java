@@ -23,8 +23,8 @@ public class Ventana extends javax.swing.JFrame implements WindowListener   {
    add(panel);
  setSize(700, 500);
  setVisible(true);
- setBackground(Color.BLACK);
- panel.iniciar();}   
+ setBackground(Color.BLACK); 
+    panel.iniciar();}   
 
     @Override
     public void windowOpened(WindowEvent e) {

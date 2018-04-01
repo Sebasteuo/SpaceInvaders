@@ -1,4 +1,3 @@
-
 package modelos;
 
 import java.awt.Color;
@@ -21,7 +20,7 @@ public class NombreHilera extends Coordenada  implements Dibujable{
  
            
        int fontSize = 20;
-    g.setFont(new Font("Chalkduster", Font.PLAIN, fontSize));
+    g.setFont(new Font("Arial", Font.PLAIN, fontSize));
     g.setColor(color);
     g.drawString(hilera,(int) this.getX(), (int)this.getY());  } 
     

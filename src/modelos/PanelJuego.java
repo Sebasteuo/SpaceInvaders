@@ -14,15 +14,17 @@ public class PanelJuego extends JPanel implements KeyListener{
      private final Coordenada movDer=new Coordenada(25,0);
      private ListaPadre invasores;//Hilera de invasores
      private ArrayList <NombreHilera>nombreHileras=new ArrayList<NombreHilera>();
-    private int cont=0,contk2=0,tam=5;
-    private String nombreJug="Sebastián",lista  ,hile[]={"A","B","D","E","C","Basic"},list="";
+    private int cont=0,contJefe=0,tam=5,puntos=0;
+    private String nombreJug,lista  ,hile[]={"A","B","D","E","C","Basic"},list="";
     private NombreHilera nh,next,nombre,puntaje,nivel;
     public PanelJuego(){ 
     this.addKeyListener(this);
     this.setFocusable(true);
-    this.crearComponentes();}                                              
+     JOptionPane.showMessageDialog(this, "Bienvenidos"); 
+      nombreJug= JOptionPane.showInputDialog("Digite su nombre:");
+    this.crearComponentes( );}                                              
      
-    public void crearComponentes(){
+    public void crearComponentes( ){ 
     elementos=new ArrayList();
       lista=hile[(int)(Math.random()*(tam-1) + 0 )];
     this.crearNuevaHilera(); }
@@ -58,11 +60,11 @@ nave=n;
  if(((jef=='i' )||(jef=='j'&&d==1))&&(!lista.equals("Basic"))){
      j=i+"i"+""; } }
     
-                  Invasor inv=new Invasor(new Coordenada((i+1)*100,0),40,Color.BLUE,j);
+                  Invasor inv=new Invasor(new Coordenada((i+2)*100,0),40,Color.BLUE,j);
              invasores.insertar(inv);
              elementos.add(inv);
                     invasores.crearListaCircular();
-            } invasores.imprimir();
+            }  
              
   /////////////////////////////////////////////////////CREA NOMBRE DE HILERA         
    next=new NombreHilera(0,45,40,"ProxHile: "+lista,Color.RED);
@@ -71,7 +73,7 @@ nave=n;
  elementos.add(nivel);
      nombre=new NombreHilera(0,105,40,"Nombre: "+nombreJug,Color.RED);
  elementos.add(nombre); 
-    puntaje=new NombreHilera(500,15,40,"Puntaje: ",Color.RED);
+    puntaje=new NombreHilera(500,15,40,"Puntaje: "+puntos,Color.RED);
  elementos.add(puntaje); this.invasores=invasores;}
     
     @Override
@@ -129,9 +131,9 @@ nave=n;
             Nodo actual=invasores.raiz;
               while(actual!=null){
                   actual.info.ciclo();
-               if(actual.info.getY()==600){actual.info.setY(0);
-                   //JOptionPane.showMessageDialog(this, "Fin del juego");System.exit(0); }
-               }    actual=actual.sig;  }
+               if(actual.info.getY()==nave.getY()){actual.info.setY(0);
+                   JOptionPane.showMessageDialog(this, "Fin del juego");System.exit(0); }
+                   actual=actual.sig;  }
               seDisparaAInvasor();
                if(invasores.cantidad==0){ //this.removeAll();this.repaint();
                    nave.setY(900);  nave.setX(900);  
@@ -140,12 +142,13 @@ nave=n;
                    nave.balas.get(i).setY(900);}
                     nh.setX(900); nh.setY(900);
                      next.setX(900); next.setY(900);
-                        nivel.setX(900); nivel.setY(900);
+                        nivel.setX(900); nivel.setY(900);this.puntaje.setX(900);
                    this.crearNuevaHilera();  }
          Thread.sleep(60);  }
         catch(InterruptedException e){System.out.println(e);}
     repaint();} }
     
+      
  
      public void seDisparaAInvasor(){ 
       Nodo actual=invasores.raiz;
@@ -153,8 +156,8 @@ nave=n;
           for (int i=0;i<nave.balas.size();i++) {
           if(actual.info.getX()==nave.balas.get(i).getX()){ 
         
-             if( actual.info.getId().charAt(1)=='j'&&list.equals("A")){
-                 JOptionPane.showMessageDialog(this, "holap");
+   if( actual.info.getId().charAt(1)=='j'){contJefe++; 
+             if( contJefe==3&&list.equals("A")){contJefe=0;
                 Nodo aux=invasores.raiz;
                while(aux!=null){ 
                    invasores.vaciarLista();
@@ -162,40 +165,45 @@ nave=n;
                    aux.info.setY(900);
                    aux=aux.sig;}}
             
-             if( actual.info.getId().charAt(1)=='j'&&list.equals("B")){
-                 int a=  (int)(Math.random()*(tam) + 1),cont=1;
+              if(contJefe==3&&list.equals("B")){ contJefe=0;
+                 int a=  (int)(Math.random()*(tam) +  1),cont=1;
                  Nodo aux=invasores.raiz;
                  while(aux!=null ){
                      if(a==cont){
- JOptionPane.showMessageDialog(this, aux.info.getId()+aux.info.getX()+"ss"+aux.info.getY());
-                actual.info.setX(aux.info.getX());
-                 actual.info.setY(aux.info.getY());break;}
+                         float x=aux.info.getX(); float y=aux.info.getY();
+
+                   aux.info.setX(900);
+                  aux.info.setY(900);
+                  invasores.borrarNodo(aux.info.getX(), aux.info.getY());
+
+                  invasores.imprimir();
+                    actual.info.setX(x);
+                    actual.info.setY(y);break;}
+                     
                      cont++;
-                 aux=aux.sig;  }
-                                  
- 
-                  
-                 //invasores.borrarNodo((float)aux.info.getX(),(float)aux.info.getY());   }
-             }
+                        aux=aux.sig;  }  }
              
-           if( actual.info.getId().charAt(1)=='j'&&list.equals("C")){ 
+           if( contJefe==3&&list.equals("C")){ contJefe=0;
                invasores.borrarNodo((float)actual.info.getX(),(float)actual.info.getY()); 
                 actual.info.setX(900);
-           actual.info.setY(900);}
-            if( actual.info.getId().charAt(1)=='j'&&list.equals("D")){
+                   actual.info.setY(900);}
+            if(contJefe==3&&list.equals("D")){contJefe=0;
                 invasores.borrarNodo((float)actual.info.getX(),(float)actual.info.getY()); 
                 actual.info.setX(900);
            actual.info.setY(900);} 
-             if( actual.info.getId().charAt(1)=='j'&&list.equals("E")){
+             if(contJefe==3&&list.equals("E")){contJefe=0;
               invasores.borrarNodo((float)actual.info.getX(),(float)actual.info.getY()); 
                 actual.info.setX(900);
            actual.info.setY(900);}
-          
-              if( actual.info.getId().charAt(1)!='j'){
+          }
+             else{
                     invasores.borrarNodo((float)actual.info.getX(),(float)actual.info.getY()); 
                 actual.info.setX(900);
-           actual.info.setY(900);  }}
-          } actual=actual.sig;  } }
+           actual.info.setY(900);  }
+          
+           puntos+=5;}
+          } actual=actual.sig;  } 
+     }
     
      
   
