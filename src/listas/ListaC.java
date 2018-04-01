@@ -1,42 +1,34 @@
   
 package listas;
 
-import modelos.Invasor;
 import nodo.Nodo;
+import javax.swing.JOptionPane;
+
+import modelos.Invasor;
 
  public class ListaC extends ListaPadre{ //LISTA CIRCULAR
    
-      public void insertar (int pos, Invasor x)//INSERTA DE FORMA CIRCULAR 
-    {
-        if (pos <= cantidad () + 1)    {
-            Nodo nuevo = new Nodo (x);
-            nuevo.info = x;
-            if (pos == 1){
-                nuevo.sig =  getRaiz();
-                if ( getRaiz()!=null)
-                     getRaiz().ant=nuevo;
-                 raiz = nuevo;
-            } else
-                if (pos == cantidad () + 1)    {
-                    Nodo reco =  getRaiz();
-                    while (reco.sig != null) {
-                        reco = reco.sig;
-                    }
-                    reco.sig = nuevo;
-                    nuevo.ant=reco;
-                    nuevo.sig = null;
-                } else {
-                    Nodo reco =  getRaiz();
-                    for (int f = 1 ; f <= pos - 2 ; f++)
-                        reco = reco.sig;
-                    Nodo siguiente = reco.sig;
-                    reco.sig = nuevo;
-                    nuevo.ant=reco;
-                    nuevo.sig = siguiente;
-                    siguiente.ant=nuevo;
-                }
-        }
-    }
+     
+      @Override
+      public Nodo insertar (Invasor x)//INSERTA DE FORMA CIRCULAR 
+         {  
+       if(vacia()){raiz=new Nodo(x);}
+       
+       else{  
+       Nodo actual=raiz;
+       while(actual.sig!=null){
+      actual=actual.sig; }
+       Nodo s=new Nodo(x);
+       actual.sig=s;
+       s.ant=actual;cantidad++;
+       return actual;  } 
+    cantidad++;return raiz;
+     }
+      
+      @Override
+           public void crearListaCircular(){
+     Nodo ultimo=this.ultimoNodo();
+     ultimo.sig=raiz.ant; }
         public void SeDestruyeAlJefe(){}
 
 }
