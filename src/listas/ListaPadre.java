@@ -62,10 +62,10 @@ public class ListaPadre {
 	{cantidad--;
 		Nodo anterior=null;
 		Nodo actual=raiz;
-		while(actual!=this.ultimoNodo())
-		{
+		while(actual!=this.ultimoNodo()) { 
 			if(actual.info.getX()==x&&actual.info.getY()==y)
-			{
+			{		 
+
 				if(anterior==null)
 				{
 					raiz=actual.sig;
@@ -82,9 +82,11 @@ public class ListaPadre {
 			anterior=actual;
 			actual=actual.sig;
 		}
-		if(this.ultimoNodo().info.getX()==x&&this.ultimoNodo().info.getY()==y)
-		{Nodo u=this.ultimoNodo();
-			u=actual.ant;
+		if(this.ultimoNodo().info.getX()==x&&this.ultimoNodo().info.getY()==y) { 
+                     Nodo u=this.ultimoNodo();
+                     if(cantidad!=0) {
+                     u.ant.sig=null; }
+			 
 			return true; 	}
 		return false; }
     
@@ -160,6 +162,8 @@ public class ListaPadre {
    public void vaciarLista(){
      raiz=null;cantidad=0;
    }
+   
+   public void ordenarPorMayorResistencia(){}
 }
 
            
