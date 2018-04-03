@@ -17,7 +17,10 @@ public class Invasor  extends Coordenada implements Dibujable{
     public Color color;
     private String id;
     private int cont=0,dir=0,j=0;
-    public Invasor(Coordenada cor,float r,Color c,String i){super(cor.getX(),cor.getY());radio=r;color=c;id=i;}
+    private int velocidad;
+    public Invasor(Coordenada cor,float r,Color c,String i,int v){super(cor.getX(),cor.getY());
+    
+    velocidad=v;radio=r;color=c;id=i;}
    
  
     public String getId(){return id;}
@@ -43,16 +46,16 @@ g.drawImage(Img.getImage(), (int)this.getX(), (int)this.getY(), 70, 70, null);}
       else{dir=1;}
       
       
-     if(cont!=200){ 
+     if(cont<200){ 
          float y=this.getX(); 
          if( dir==0){ 
-        this.setX(y-=5); }
-          if( dir==1){   this.setX(y+=5);}
-     cont+=5;}
+        this.setX(y-=velocidad); }
+          if( dir==1){   this.setX(y+=velocidad);}
+     cont+=velocidad;}
      
      else{ 
          float x=this.getY();
-         this.setY(x+=5); cont=0;j++;}
+         this.setY(x+=velocidad); cont=0;j++;}
      
         }
     

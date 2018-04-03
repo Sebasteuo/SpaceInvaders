@@ -56,9 +56,10 @@ g.drawImage(Img.getImage(), (int)this.getX()-35, (int)this.getY(), 70, 70, null)
     
     
    public void mover(Coordenada c) {
+       if(c2.suma(c).getX()>50&&c2.suma(c).getX()<725){
      this.setVertice(this.suma(c), 1);
       this.setVertice(c1.suma(c), 2);
-   this.setVertice(c2.suma(c), 3);}
+   this.setVertice(c2.suma(c), 3);}}
     
     public Bala crearBala(){
     Coordenada c=new Coordenada(this.getX(),this.getY());
@@ -70,7 +71,7 @@ g.drawImage(Img.getImage(), (int)this.getX()-35, (int)this.getY(), 70, 70, null)
 for(int i=0;i<balas.size();i++){
 Bala y= (Bala)this.balas.get(i);
 float x=y.getY();
-y.setY(x-=5);
+y.setY(x-=20);
 }
 
     }
