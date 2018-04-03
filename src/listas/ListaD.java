@@ -29,5 +29,9 @@ public class ListaD extends ListaPadre {
      Nodo ultimo=this.ultimoNodo();
      ultimo.sig=raiz.ant; }
      
-    public void ordenarListaPorResistencias(){}
+     @Override
+   public void ordenarPorMayorResistencia(){
+   
+   
+   }
 }
