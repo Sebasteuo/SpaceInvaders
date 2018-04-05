@@ -24,19 +24,16 @@ public class PanelJuego extends JPanel implements KeyListener{
     public PanelJuego(){ 
     this.addKeyListener(this);
     this.setFocusable(true);
-     opcion=JOptionPane.showInputDialog("Space Invaders \n  a. Jugar. \n b. ver Estadisticas? \n c. Acerca de. \n d. Salir.");
+    opcion=JOptionPane.showInputDialog("Space Invaders \n  a. Jugar. \n b. ver Estadisticas? \n c. Acerca de. \n d. Salir.");
       if(opcion.equals("a")){ 
          nombreJug= JOptionPane.showInputDialog("Digite su nombre:");
-         this.GuardarEstadisticas("Luis", 200);
-          this.GuardarEstadisticas("Kevin", 140);
-           this.GuardarEstadisticas("Maria", 300);
+     
     this.crearComponentes( );}
-     
-    if(opcion.equals("b")){this.CargarEstadisticas();System.exit(0);}
+      if(opcion.equals("b")){this.CargarEstadisticas();System.exit(0);}
     if(opcion.equals("c")){}
-    if(opcion.equals("d")){System.exit(0);}
+    if(opcion.equals("d")){System.exit(0);} 
      
-  }                                              
+  }                       
      
     public void crearComponentes( ){ 
     elementos=new ArrayList();
@@ -50,7 +47,7 @@ public class PanelJuego extends JPanel implements KeyListener{
    Nave n=new Nave(c,c1,c2,Color.red);
   elementos.add(n);
 nave=n;
-  nh=new NombreHilera(0,20,40,"Hilera: "+lista,Color.RED);
+  nh=new NombreHilera(0,20,40,"Hilera:"+lista,Color.RED);
  elementos.add(nh);  
           list=lista;
 
@@ -73,10 +70,14 @@ nave=n;
  else{    
  if(((jef=='i' )||(jef=='j'&&d==1))&&(!lista.equals("Basic"))){
      j=i+"i"+""; } }
-    
-                  Invasor inv=new Invasor(new Coordenada((i+2)*100,40),40,Color.BLUE,j,velocidad);
-             invasores.insertar(inv);
-             elementos.add(inv);
+    if(nh.hilera.equals("Hilera:E")){
+                  Invasor inv=new Invasor(new Coordenada((i)*100,40),40,Color.BLUE,j,velocidad);
+     invasores.insertar(inv);
+             elementos.add(inv);}
+    else{    Invasor inv=new Invasor(new Coordenada((i+2)*100,40),40,Color.BLUE,j,velocidad);
+     invasores.insertar(inv);
+             elementos.add(inv);}
+             
               invasores.crearListaCircular();  }    velocidad+=2;
   /////////////////////////////////////////////////////CREA NOMBRE DE HILERA         
    next=new NombreHilera(100,20,40,"ProxHile: "+lista,Color.RED);
@@ -142,9 +143,13 @@ nave=n;
             if(!nave.balas.isEmpty()){nave.ciclo();}
             Nodo actual=invasores.raiz;
               while(actual!=null){
-                  actual.info.ciclo();
+                  if(!nh.hilera.equals("Hilera:E")){actual.info.ciclo();}
+                  
+                  else{ 
+                      actual.info.cicloCircular();}
+                  
                if(actual.info.getY()==nave.getY()){actual.info.setY(0);
-                   JOptionPane.showMessageDialog(this, "Fin del juego");System.exit(0); }
+                   JOptionPane.showMessageDialog(this, "Fin del juego");this.GuardarEstadisticas(this.nombreJug, puntos);System.exit(0); }
                    actual=actual.sig;  }
               seDisparaAInvasor();
                if(invasores.cantidad==0){ //this.removeAll();this.repaint();
@@ -159,9 +164,7 @@ nave=n;
          Thread.sleep(60);  }
         catch(InterruptedException e){System.out.println(e);}
     repaint();} }
-    
-      
- 
+     
      public void seDisparaAInvasor(){ 
       Nodo actual=invasores.raiz;
       while(actual!=null){
@@ -263,15 +266,7 @@ System.out.println(texto);
 }
 }
 
-catch(Exception e)
-{
+catch(Exception e){
 System.out.println("Error al leer");
-}
-}
 
-
-
-    
-     
-
-}
+}}}
