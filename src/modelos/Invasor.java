@@ -32,11 +32,11 @@ public class Invasor  extends Coordenada implements Dibujable{
       
 	 
      if(id.charAt(1)=='j'){
-    ImageIcon Img = new ImageIcon(getClass().getResource("/imagenes/jefe.jpg")); 
+    ImageIcon Img = new ImageIcon(getClass().getResource("/imagenes/jefe.png")); 
 g.drawImage(Img.getImage(), (int)this.getX(), (int)this.getY(), 70, 70, null);}
      
        else{
-    ImageIcon Img = new ImageIcon(getClass().getResource("/imagenes/Invasor.jpg")); 
+    ImageIcon Img = new ImageIcon(getClass().getResource("/imagenes/images.png")); 
 g.drawImage(Img.getImage(), (int)this.getX(), (int)this.getY(), 70, 70, null);}
       }
 
@@ -59,5 +59,27 @@ g.drawImage(Img.getImage(), (int)this.getX(), (int)this.getY(), 70, 70, null);}
      
         }
     
+  
+    public void cicloCircular(){
+          if(this.getX()<=420 && this.getY()<=40){float x=this.getX();
+         this.setX(x+=velocidad); ;cont=3;}
+          
+         
+        if(this.getX()>420&&this.getY()<150){  
+            float x=this.getY();
+         this.setY(x+=velocidad);    }
+            
+             
+     if( this.getY()>=150&&(this.getX()>=250) ){     
+            float x=this.getX();  
+         this.setX(x-=velocidad);   }
+              
+            
+     if(this.getX()<250&&this.getY()>40  ){ 
+            float x=this.getY(); 
+         this.setY(x-=velocidad);cont=0;  }    
+              
 
-}
+}}
+        
+        
