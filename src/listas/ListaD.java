@@ -26,12 +26,29 @@ public class ListaD extends ListaPadre {
     
      @Override
           public void crearListaCircular(){
-     Nodo ultimo=this.ultimoNodo();
-     ultimo.sig=raiz.ant; }
+    }
      
      @Override
-   public void ordenarPorMayorResistencia(){
-   
-   
+   public void ordenarPorMayorResistencia(){  
+                JOptionPane.showMessageDialog(null, "sip"+cantidad);
+        Nodo actual=this.raiz;Nodo aux=null;
+        for(int i=1;i<cantidad;i++){
+        for(int j=0;j<cantidad-1;j++){
+              JOptionPane.showMessageDialog(null, actual.info.resistencia);  
+            if(actual.info.resistencia>0){
+    aux=actual;
+            actual=actual.sig;
+            actual.sig=aux;}
+        actual=actual.sig   ;
+        
+      Nodo act=null;
+      while(act!=null){
+          System.out.print(act.info.id+" "+act.info.resistencia);
+           System.out.println();
+
+          act=act.sig;}
+                
+        
    }
-}
+
+        }}}

@@ -67,8 +67,7 @@ public class ListaPadre {
 			{		 
 
 				if(anterior==null)
-				{
-					raiz=actual.sig;
+				{ raiz=actual.sig;
 					raiz.ant=null;
 				}
 				else{
@@ -165,5 +164,7 @@ public class ListaPadre {
    
    public void ordenarPorMayorResistencia(){}
 }
+
+           
 
            
