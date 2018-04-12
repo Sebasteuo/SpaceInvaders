@@ -30,25 +30,34 @@ public class ListaD extends ListaPadre {
      
      @Override
    public void ordenarPorMayorResistencia(){  
-                JOptionPane.showMessageDialog(null, "sip"+cantidad);
-        Nodo actual=this.raiz;Nodo aux=null;
-        for(int i=1;i<cantidad;i++){
-        for(int j=0;j<cantidad-1;j++){
-              JOptionPane.showMessageDialog(null, actual.info.resistencia);  
-            if(actual.info.resistencia>0){
-    aux=actual;
-            actual=actual.sig;
-            actual.sig=aux;}
-        actual=actual.sig   ;
-        
-      Nodo act=null;
-      while(act!=null){
-          System.out.print(act.info.id+" "+act.info.resistencia);
-           System.out.println();
-
-          act=act.sig;}
-                
-        
-   }
-
-        }}}
+     if (cantidad > 1) {
+        boolean cambio;
+        do {
+            Nodo actual = raiz;
+            Nodo anterior = null;
+            Nodo siguiente = raiz.sig;
+            cambio = false;
+            while ( siguiente != null ) {
+                if (actual.info.resistencia<actual.sig.info.resistencia) {
+                    cambio = true;
+                    if ( anterior != null ) {
+                        Nodo sig = siguiente.sig;
+                        anterior.sig = siguiente;
+                        siguiente.sig = actual;
+                        actual.sig = sig;
+                    } else {
+                        Nodo sig = siguiente.sig;
+                        raiz = siguiente;
+                        siguiente.sig = actual;
+                        actual.sig = sig;
+                    }
+                    anterior = siguiente;
+                    siguiente = actual.sig;
+                } else { 
+                    anterior = actual;
+                    actual = siguiente;
+                    siguiente = siguiente.sig;
+                }
+            } 
+        } while( cambio );
+    } }}
