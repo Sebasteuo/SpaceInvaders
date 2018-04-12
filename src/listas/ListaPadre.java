@@ -91,21 +91,39 @@ public class ListaPadre {
     
     
     public void intercambiar (int pos1, int pos2) {
-        if (pos1 <= cantidad () && pos2 <= cantidad ())    {
+         System.out.println(pos1+"----"+pos2);
+
             Nodo reco1 = raiz;
-            for (int f = 1 ; f < pos1 ; f++)
-                reco1 = reco1.sig;
+            while(Integer.parseInt(reco1.info.id.charAt(0)+"")!=pos1){
+                reco1 = reco1.sig;}
+            
             Nodo reco2 = raiz;
-            for (int f = 1 ; f < pos2 ; f++)
-                reco2 = reco2.sig;
+                while(Integer.parseInt(reco2.info.id.charAt(0)+"")!=pos1){
+                reco2 = reco2.sig;}
+            
+             System.out.println(reco1+"--"+reco2);
             Invasor aux = reco1.info;
             reco1.info = reco2.info;
             reco2.info = aux;
+           
+            
         }
+    
+    
+    public void ordenarPorResistencia(){
+   
+    
+    
     }
-    
  
-    
+    public void acomodarPorId(){
+    Nodo actual=raiz;int cont=1;
+    while(actual!=null){
+        actual.info.id=cont+""+actual.info.id.charAt(1);
+        cont++;
+        actual=actual.sig;}
+        
+    }
      
     public int cantidad (){
         Nodo reco = raiz;
@@ -145,7 +163,7 @@ public class ListaPadre {
     public void imprimir ()
     { Nodo actual = raiz; 
         while (actual != null) { 
-            System.out.print ("Invasor #"+actual.info.getId()+" "+actual.info.getX() + "-"+actual.info.getY()); System.out.println();
+            System.out.print ("Invasor #"+actual.info.getId()+" "+actual.info.getX() + "-"+actual.info.getY()+"-"+actual.info.resistencia); System.out.println();
           actual = actual.sig;  }
         System.out.println(); }
         
@@ -163,8 +181,8 @@ public class ListaPadre {
    }
    
    public void ordenarPorMayorResistencia(){}
+   
+   public void seDestruyeAlJefe(int pos1, int pos2){}
 }
-
-           
 
            
