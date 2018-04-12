@@ -21,7 +21,7 @@ import java.util.ArrayList;
  import java.awt.*;
  import javax.swing.*; 
 import java.awt.*;
-public class Ventana extends javax.swing.JFrame implements WindowListener   {   
+public class Ventana extends javax.swing.JFrame implements WindowListener   {
 
     public Ventana(String titulo) {
        	 super(titulo);	
@@ -37,7 +37,7 @@ public class Ventana extends javax.swing.JFrame implements WindowListener   {
  setLayout(new CardLayout());
     
    JLabel l=new JLabel(" ");
-   String path = "/imagenes/fondo3.png";  
+   String path = "/imagenes/juego.jpg";  
 URL url = this.getClass().getResource(path);  
 ImageIcon icon = new ImageIcon(url);    
 l.setIcon(icon);  
@@ -83,13 +83,13 @@ barraDesplazamiento.setBounds(10,30,200,110);
   contenedor.add(panel,"2");
   contenedor.add(panel2,"3");
   c.show(contenedor, "1");
- panel.crearComponentes();
-   //////////////////////////////////////                     SE AGREGA PANEL A LA VENTANA
+  
+    //////////////////////////////////////                     SE AGREGA PANEL A LA VENTANA
       b.addActionListener(new ActionListener() {
   public void actionPerformed(ActionEvent e) {
                panel.nombreJug= JOptionPane.showInputDialog("Digite su nombre:");
-                       panel.crearComponentes();
-              c.show(contenedor, "2");
+                 panel.crearComponentesJuego();
+               c.show(contenedor, "2");
     }	
 });
       
@@ -99,8 +99,7 @@ barraDesplazamiento.setBounds(10,30,200,110);
               
                 volver.addActionListener(new ActionListener() {
   public void actionPerformed(ActionEvent e) {
-                        panel.crearComponentes();
-              c.show(contenedor, "1");
+               c.show(contenedor, "1");
     }	
 });    
     }	
@@ -111,8 +110,7 @@ barraDesplazamiento.setBounds(10,30,200,110);
  setSize(700, 500);
  setVisible(true);
  setBackground(Color.BLACK);
- panel.iniciar();
-
+ panel.iniciar();  
    }   
 
 

@@ -43,6 +43,12 @@ g.drawImage(Img.getImage(), (int)this.getX(), (int)this.getY(), 70, 70, null);}
       }
 
   public void ciclo(){
+      if(this.getX()>700 ){ 
+      this.setX(700);}
+      
+       if(this.getX()<0){ 
+      this.setX(0);}
+      
       if(j%2==0){dir=0;}
       
       else{dir=1;}
@@ -63,28 +69,30 @@ g.drawImage(Img.getImage(), (int)this.getX(), (int)this.getY(), 70, 70, null);}
     
   
     public void cicloCircular(){
-          {
-          if(this.getX()<=390 && this.getY()<=40){float x=this.getX();
+          {    
+           
+          if(this.getX()<=500 && this.getY()<=40+dir){float x=this.getX();
          this.setX(x+=velocidad); ;cont=3;}
           
          
-        if(this.getX()>390&&this.getY()<200){  
+        if(this.getX()>500&&this.getY()<200+j){  
             float x=this.getY();
-         this.setY(x+=velocidad);    }
+         this.setY(x+=velocidad);   j+=1;  }
             
              
-     if( this.getY()>=200&&(this.getX()>=220) ){     
+     if( this.getY()>=200+dir&&(this.getX()>=330) ){     
             float x=this.getX();  
          this.setX(x-=velocidad);   }
               
             
-     if(this.getX()<220&&this.getY()>40  ){ 
+     if(this.getX()<330&&this.getY()>40+dir  ){ 
             float x=this.getY(); 
-         this.setY(x-=velocidad);cont=0;  }    
+         this.setY(x=x-velocidad); cont=0; dir+=1;  }    
      float s=this.getY();
                //this.setY(s+=velocidad);
 
 }}}
+        
         
         
           
