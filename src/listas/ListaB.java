@@ -6,12 +6,20 @@ import nodo.Nodo;
 
  public class ListaB extends ListaPadre{
 
-  
-   public void SeDestruyeAlJefe(Invasor jefe, Invasor inv){
-      Nodo actual=raiz;
-      
-      while(actual!=null){
-      actual=actual.sig;
-      }
-   }
+     @Override
+   public void intercambiar (int pos1, int pos2) {
+      {
+            Nodo jefe = raiz;
+            while(jefe!=null&&Integer.parseInt(jefe.info.id.charAt(0)+"")!=pos1){
+                jefe = jefe.sig;}
+            
+            Nodo actual = raiz;
+             while(actual!=null&&Integer.parseInt(actual.info.id.charAt(0)+"")!=pos2){
+                actual = actual.sig;}
+             
+            Invasor aux = jefe.info;
+            jefe.info = actual.info;
+            actual.info = aux;
+        }
+    }
 }
