@@ -70,7 +70,7 @@ public class Nave extends Coordenada implements Dibujable {
 	}
 
 	/**
-	 * 
+	 * este método se encarga de pintar los componentes en el panel del juego, es un método @Override , quiere decir que se implementa de la interfaz Dibujable y se llama automáticamente.
 	 * @param g
 	 * @param c
 	 */
@@ -111,7 +111,7 @@ public class Nave extends Coordenada implements Dibujable {
 	}
 
 	/**
-	 * 
+	 * Basicamente lo que hacen es darle movimiento tanto a la hilera de invasores como a las balas cuando se disparan.
 	 */
 	public void ciclo() {
 		for (int i = 0; i < balas.size(); i++) {

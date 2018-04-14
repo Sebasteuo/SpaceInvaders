@@ -10,7 +10,9 @@ import nodo.Nodo;
  *
  */
 public class ListaB extends ListaPadre {
-
+/**
+ * Este método se encarga de intercambiar dos nodos, en este caso el jefe con cualquier aleatorio invasor, primero se crea un Nodo auxiliar y luego se recorre el ciclo while hasta encontrar la posición del jefe, igual que con el invasor se recorre el otro while,  des pués se procede a intercambiar ambos nodos.
+ */
 	@Override
 	public void intercambiar(int pos1, int pos2) {
 		{

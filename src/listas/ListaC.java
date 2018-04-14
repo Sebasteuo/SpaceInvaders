@@ -13,7 +13,7 @@ import modelos.Invasor;
 public class ListaC extends ListaPadre { // LISTA CIRCULAR
 
 	/**
-	 *      
+	 *Esta función se encarga se insertar el nuevo Nodo Osea invasor en la lista, primero se pregunta si la lista esta vacia , si lo es se inserta el invasor de primero o de raiz , sino se inserta luego del primer Nodo , después se agregan los punteros de anterior y siguiente para enlazar el nuevo nodo a la lista.      
 	 */
 	@Override
 	public Nodo insertar(Invasor x)// INSERTA DE FORMA CIRCULAR
@@ -38,7 +38,7 @@ public class ListaC extends ListaPadre { // LISTA CIRCULAR
 	}
 
 	/**
-	 *       
+	 * Este método basicamente lo que hace es enlazar el último nodo de la lista con el primero, esto quiere decir que el nodo siguiente del nodo ultimo será el primer nodo de la lista , mientras que el anterior nodo del primer nodo será el último.      
 	 */
 	@Override
 	public void crearListaCircular() {

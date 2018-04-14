@@ -3,7 +3,7 @@ package ejecuciones;
 import modelos.*;
 
 /**
- * 
+ * El método main crea una instancia de la clase ventana.
  * @author sebastianalba
  *
  */

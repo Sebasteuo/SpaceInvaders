@@ -15,7 +15,7 @@ public class Menu extends JPanel {
 	}
 
 	/**
-	 *     
+	 *Esta funcion se encarga de iniciar todas las animaciones y movimientos de juego, asi como los disparos y la destrucción de los enemigos, tambien verificar si se acaba el juego inclusive.     
 	 */
 	public void iniciar() {
 		JLabel a = new JLabel("Nuevo Juego");

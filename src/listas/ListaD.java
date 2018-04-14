@@ -12,7 +12,7 @@ import modelos.Invasor;
 public class ListaD extends ListaPadre {
 
 	/**
-	 *    
+	 * Esta función se encarga se insertar el nuevo Nodo Osea invasor en la lista, primero se pregunta si la lista esta vacia , si lo es se inserta el invasor de primero o de raiz , sino se inserta luego del primer Nodo , después se agregan los punteros de anterior y siguiente para enlazar el nuevo nodo a la lista.   
 	 */
 	@Override
 	public Nodo insertar(Invasor x)// INSERTA DE FORMA CIRCULAR
@@ -37,14 +37,14 @@ public class ListaD extends ListaPadre {
 	}
 
 	/**
-	 *   
+	 *  Este método basicamente lo que hace es enlazar el último nodo de la lista con el primero, esto quiere decir que el nodo siguiente del nodo ultimo será el primer nodo de la lista , mientras que el anterior nodo del primer nodo será el último. 
 	 */
 	@Override
 	public void crearListaCircular() {
 	}
 
 	/**
-	 *    
+	 *Esta función se encarga de ordenar la lista , en este caso la lista D según las resistencias de Mayor a menor , se ordena usando el algoritmo Bubble sort , primero se recorre el ciclo while para buscar el siguiente nodo del primer nodo (raiz) , cuando se encuentre se compara con el primero para ver si es mayor o menor, si el primero es menor al siguiente se procede con el intercambio , sino , no se intercambia.    
 	 */
 	@Override
 	public void ordenarPorMayorResistencia() {

@@ -33,7 +33,7 @@ public class Bala extends Coordenada implements Dibujable {
 	}
 
 	/**
-	 *       
+	 *Basicamente lo que hacen es darle movimiento a las balas cuando se disparan.      
 	 */
 	public void ciclo() {
 		float x = this.getY();
