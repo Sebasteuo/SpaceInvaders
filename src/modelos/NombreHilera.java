@@ -30,7 +30,7 @@ public class NombreHilera extends Coordenada implements Dibujable {
 	}
 
 	/**
-	 *  
+	 *  Dibuja los datos importantes como estadisticas e hileras 
 	 */
 	@Override
 	public void dibujar(Graphics g) {

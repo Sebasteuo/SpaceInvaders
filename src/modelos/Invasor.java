@@ -33,7 +33,7 @@ public class Invasor  extends Coordenada implements Dibujable{
  */
     public void setId(String a){id=a;}
 /**
- * 
+ * Dibuja el invasor, si su id es j entonces se pinta como jefe sino como invasore verde.
  */
         @Override
 	public void dibujar(Graphics g){    

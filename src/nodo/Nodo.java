@@ -12,7 +12,7 @@ public class Nodo {
 	public Nodo ant, sig;
 
 	/**
-	 * 
+	 * Crea al nodo invasor, cada nave invasdora
 	 * @param i
 	 */
 	public Nodo(Invasor i) {

@@ -53,7 +53,7 @@ public class Nave extends Coordenada implements Dibujable {
 	}
 
 	/**
-	 * 
+	 * Dibuja la nave
 	 */
 	@Override
 	public void dibujar(Graphics g) {
@@ -89,7 +89,7 @@ public class Nave extends Coordenada implements Dibujable {
 	}
 
 	/**
-	 * 
+	 * mueve la nave de derecha a izquierda y viceversa
 	 * @param c
 	 */
 	public void mover(Coordenada c) {
@@ -101,7 +101,7 @@ public class Nave extends Coordenada implements Dibujable {
 	}
 
 	/**
-	 * 
+	 * crea las balas en la nave.
 	 * @return
 	 */
 	public Bala crearBala() {

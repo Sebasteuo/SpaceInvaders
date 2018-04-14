@@ -21,7 +21,7 @@ public class Bala extends Coordenada implements Dibujable {
 	}
 
 	/**
-	 * 
+	 * Dibuja las balas
 	 */
 	@Override
 	public void dibujar(Graphics g) {

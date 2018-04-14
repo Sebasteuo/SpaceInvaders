@@ -367,7 +367,7 @@ if( (nave.balas.get(i).getY()<actual.info.getY()+50&&nave.balas.get(i).getY()>ac
     
           actual=actual.sig;  } /*FIN DEL WHILE */  }
 /**
- *      
+ * Acomoda la hilera después de las eliminaciones .También los centra.     
  */
   public void acomodarHilera()   {//Acomodar hilera despues de eliminaciones.....
       int contPos=0;
@@ -377,7 +377,7 @@ if( (nave.balas.get(i).getY()<actual.info.getY()+50&&nave.balas.get(i).getY()>ac
       contPos++; 
   actual=actual.sig;}  }
 /**
- *     
+ *     Guarda estadísticas en el archivo txt
  * @param nom
  * @param puntos
  */

@@ -14,6 +14,7 @@ import modelos.Invasor;
  
 	 /**
 	  * INSERTA DE FORMA CIRCULAR y DOBLE
+	  * Esta función se encarga se insertar el nuevo Nodo Osea invasor en la lista, primero se pregunta si la lista esta vacia , si lo es se inserta el invasor de primero o de raiz , sino se inserta luego del primer Nodo , después se agregan los punteros de anterior y siguiente para enlazar el nuevo nodo a la lista.
 	  */
      @Override
       public Nodo insertar (  Invasor x)//INSERTA DE FORMA CIRCULAR y DOBLE
