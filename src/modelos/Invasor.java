@@ -11,7 +11,7 @@ import javax.swing.ImageIcon;
  
 public class Invasor  extends Coordenada implements Dibujable{
     
-   private float radio;
+   private float radio; //Se ponen con warning porque deben ser final o constante
     public Color color;
     public String id;
     private int cont=0,dir=0,j=0;
@@ -33,7 +33,7 @@ public class Invasor  extends Coordenada implements Dibujable{
  */
     public void setId(String a){id=a;}
 /**
- * Dibuja el invasor, si su id es j entonces se pinta como jefe sino como invasore verde.
+ * Dibuja el invasor, si su id es j entonces se pinta como jefe sino como invasor, verde.
  */
         @Override
 	public void dibujar(Graphics g){    
@@ -49,7 +49,8 @@ g.drawImage(Img.getImage(), (int)this.getX(), (int)this.getY(), 70, 70, null);}
       }
 
   /**
-   *Esta función se encuentra en las clases nave e invasores , no necesariamente tienen la misma funcionalidad,pero basicamente lo que hacen es darle movimiento tanto a la hilera de invasores como a las balas cuando se disparan. 
+   *Esta función se encuentra en las clases nave e invasores , no necesariamente tienen la misma funcionalidad,pero basicamente lo que hacen es darle movimiento tanto a la hilera de invasores como a las balas cuando se disparan.
+   * SI algun invasor llega a la posicion de la ventana 700 no lo va a permitir porque se sale de la pantalla, igual en la si llega a la posicion 0 del lado izquierdo no lo permite
    */
   public void ciclo(){
       if(this.getX()>700 ){ 
@@ -62,6 +63,10 @@ g.drawImage(Img.getImage(), (int)this.getX(), (int)this.getY(), 70, 70, null);}
       
       else{dir=1;}
       
+      
+      /**
+       * El contad empieza en cero y va incrementando conforme se va moviendo
+       */
       
      if(cont<200){ 
          float y=this.getX(); 
@@ -77,7 +82,7 @@ g.drawImage(Img.getImage(), (int)this.getX(), (int)this.getY(), 70, 70, null);}
         }
     
   /**
-   * 
+   * Mueve la nave circularmente
    */
     public void cicloCircular(){
           {    

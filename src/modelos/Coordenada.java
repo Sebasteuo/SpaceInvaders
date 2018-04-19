@@ -2,7 +2,7 @@
 package modelos;
 
 /**
- * 
+ * Esta clase recibe dos atributos X y Y, X y Y lo que hacen es la oposicon X del objeto y Y del objeto
  * @author sebastianalba
  *
  */
@@ -58,7 +58,7 @@ public class Coordenada {
 	}
 
 	/**
-	 * 
+	 * Se usa cuando se quiere mover la nave a la derecha o a la izquierda, porque modifica el X y Y, si se mueve a la izquierda se resta si se va a la derecha, se suma
 	 * @param c
 	 * @return
 	 */
