@@ -9,3 +9,4 @@ Kevin 140
 Maria 300
 sebas 10
 sebas 75
+sebas 0
